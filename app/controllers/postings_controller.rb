@@ -1,5 +1,5 @@
 class PostingsController < ApplicationController
-  before_action :set_posting, only: [:show, :edit, :delete]
+  before_action :set_posting, only: [:show, :edit, :delete, :update]
   def index
     if supplier_signed_in?
       @postings = Posting.all.where(supplier_id: current_supplier.id)
@@ -25,7 +25,7 @@ class PostingsController < ApplicationController
     
   end
   def update
-    picture = params[:post][:avatar]
+    picture = params[:posting][:avatar]
     if @posting.update(posting_params)
       if picture
         @posting.picture.attach(picture)

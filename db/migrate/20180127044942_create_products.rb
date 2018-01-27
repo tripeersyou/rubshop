@@ -4,6 +4,7 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.string :name
       t.decimal :price
       t.integer :quantity
+      t.text :description
       t.references :seller, foreign_key: true
 
       t.timestamps

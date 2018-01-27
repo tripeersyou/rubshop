@@ -17,6 +17,7 @@
 //= require materialize-sprockets
 //= require_tree .
 $(document).ready(function() {
+    $('textarea').addClass('materialize-textarea')
     var field_number = 1;
     $('select').material_select();
     $('form').on('cocoon:after-remove',function(e,deliver_line){

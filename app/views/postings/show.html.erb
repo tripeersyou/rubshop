@@ -16,26 +16,47 @@
                   <p style = "font-size: 20px">Status: <% if @posting.status==false %>Reserved<% else %>Available<%end %></p>
                 </div>
                 <%if seller_signed_in? %>
+                <% @posting.reserve_postings.each do |pr|%>
+                <% if pr.seller_id != current_seller.id %>
                 <div class="col s7">
                 <p class="center-align"><%= link_to 'Reserve', reserve_postings_path(@posting.id), method: :put ,class: 'btn' %></p>
                 </div>
-                <%end%>
+                <% elsif pr.seller_id == current_seller.id && @posting.status == false%>
+                <div class="col s7">
+                <p class="center-align"><%= link_to 'Transaction Completed', posting_path(@posting.id), method: :delete ,class: 'btn red' %></p>
+                </div>
+                <% end %>
+                <% end %>
+                <% end %>
             </div>
             <div class="row">
                 <h4>Item Description</h4>
-                <span class="flow-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia rem quaerat ex veritatis labore fugit nemo distinctio, porro ut aperiam doloremque, deserunt sequi repudiandae quas reprehenderit soluta sed suscipit optio.</span>
-                
+                <span class="flow-text"><%=@posting.description%></span>
+                <div class="container">
+                <% if supplier_signed_in? && @posting.supplier_id == current_supplier.id%>
+                <p class="center-align"><%= link_to 'Edit Posting', edit_posting_path ,class: 'btn' %></p>
+                <% end %>
+                </div>
             </div>
         </div>
     </div>
-        <%if supplier_signed_in? || @posting.status==false %>
+        <%if supplier_signed_in? && @posting.status==false %>
             <h4>Companies that want to buy this product</h4>
             <% @posting.reserve_postings.each do |p|%>
             <ul class="collection">
-                <li class="collection-item"><div><%= p.seller.name %><a style="align: right"><%= link_to 'Accept Reservation', posting_reserve_posting_approve_path(@posting,p), method: 'put' %></a></div></li>
-              </ul>
-            <h4><%= p.seller.name %></h4>
-            <p><%= link_to 'Accept Reservation', posting_reserve_posting_approve_path(@posting,p), method: 'put' %></p>
+                <li class="collection-item">
+                    <div class="row">
+                        <div class="col s6">
+                            <h4><%= p.seller.name%></h4>
+                        </div>
+                        <div class="col s6">
+                            <div class="col s8 offset-s5" style="font-size:20px; padding-top: 20px">
+                            <%= link_to 'Accept Reservation',  posting_reserve_posting_approve_path(@posting,p), method: 'put' , class: "btn disabled" %>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         <% end %>
     <% end %>
 </div>

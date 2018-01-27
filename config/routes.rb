@@ -20,7 +20,7 @@ Rails.application.routes.draw do
         root 'products#index', as: :seller_root
         resources :products
         resources :reserve_postings, only: [:index, :destroy], as: :reservations
-        resources :postings, only: [:index, :show] do
+        resources :postings, only: [:index, :show, :destroy] do
           collection do
             put ':id/reserve', to: 'postings#reserve', as: 'reserve'
           end

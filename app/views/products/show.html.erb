@@ -12,13 +12,18 @@
             <div class="row">
               <div>
                   <h3 style=""><b><%= @product.name %></b></h3>
-                  <p style="font-size: 20px; color:#DF744A;">Price: <%= @product.price%> kg</p>
+                  <p style="font-size: 20px; color:#DF744A;">Price: <%= @product.price%> php</p>
                   <p style="font-size: 20px;">Quantity:<%= @product.quantity%>x</p>
               </div>
             </div>
             <div class="row">
                 <h4>Item Description</h4>
-                <span class="flow-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia rem quaerat ex veritatis labore fugit nemo distinctio, porro ut aperiam doloremque, deserunt sequi repudiandae quas reprehenderit soluta sed suscipit optio.</span>
+                <span class="flow-text"><%=@product.description%></span>
+                <div class="container">
+                <%if seller_signed_in? && @product.seller_id == current_seller.id %>
+                <p class="center-align"><%= link_to 'Edit Product', edit_product_path ,class: 'btn' %></p>
+                <% end %>
+                </div>
             </div>
         </div>
     </div>

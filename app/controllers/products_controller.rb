@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :delete]
+  before_action :set_product, only: [:show, :edit, :destroy, :update]
   def index
     @products = Product.all.where(seller_id: current_seller.id)
   end
@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
 
   end
   def update
-    picture = params[:post][:avatar]
+    picture = params[:product][:avatar]
     if @product.update(product_params)
       if picture
         @product.picture.attach(picture)

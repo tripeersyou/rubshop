@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2018_01_27_050022) do
     t.integer "supplier_id"
     t.integer "reserve_count", default: 0
     t.decimal "amount"
+    t.text "description"
     t.boolean "status", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -88,6 +89,7 @@ ActiveRecord::Schema.define(version: 2018_01_27_050022) do
     t.string "name"
     t.decimal "price"
     t.integer "quantity"
+    t.text "description"
     t.integer "seller_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

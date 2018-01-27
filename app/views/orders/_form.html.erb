@@ -5,7 +5,7 @@
     <div class="links">
         <%= link_to_add_association 'Add Product', f, :order_lines, :class => 'btn', :id => 'add' %>
     </div>
-    <%= f.input :total_quantity %>
-    <%= f.input :total_price %>
+    <%= f.input :total_quantity, readonly: true %>
+    <%= f.input :total_price, readonly: true %>
     <%= f.button :submit %>
 <% end %>

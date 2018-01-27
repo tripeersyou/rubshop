@@ -37,6 +37,11 @@ Rails.application.routes.draw do
       resources :sellers, only: [:show, :index] do
         resources :orders, only: [:new , :create]
       end
+      resources :apis, only: [] do
+        collection do
+          get 'products', to: 'apis#products' 
+        end
+      end
     end
   end
   

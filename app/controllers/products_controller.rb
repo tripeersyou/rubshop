@@ -31,8 +31,8 @@ class ProductsController < ApplicationController
       render :edit
     end
   end
-  def delete
-    @product.destroy
+  def destroy
+    @product.delete
     redirect_to products_path
   end
   private

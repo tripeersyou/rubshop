@@ -19,6 +19,11 @@ Rails.application.routes.draw do
     authenticated :seller do
         root 'products#index', as: :seller_root
         resources :products
+        resources :orders, only: [:index, :show] do
+          collection do
+            put ':id/approve', to: 'orders#approve', as: 'approve'
+          end
+        end
         resources :reserve_postings, only: [:index, :destroy], as: :reservations
         resources :postings, only: [:index, :show, :destroy] do
           collection do

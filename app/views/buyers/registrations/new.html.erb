@@ -1,4 +1,19 @@
-<h2>Sign up</h2>
+<div class="main-container" style="display: flex; width: 100%; height: 100vh;">
+  
+  
+  <div class="left-card" style="width: 50%; background-color: #936060;">
+    
+    <div class="left-card-content" style="display: flex;" >
+        <%= image_tag("logo.png", size: "320x200", style: "top: 50%; left:25%; transform: translate(-50%, -50%); position: fixed;  display:block;") %>
+    </div>
+  </div>
+  
+  <div class="right-card" style="width: 50%; display: flex">
+      
+    
+    <div class="right-card-content" style="margin: auto">
+              
+<h2>Sign up as a Buyer!</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
@@ -16,3 +31,10 @@
 <% end %>
 
 <%= render "buyers/shared/links" %>
+    </div>
+     
+    
+    
+  </div>
+
+</div>

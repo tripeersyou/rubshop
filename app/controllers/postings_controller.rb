@@ -1,5 +1,5 @@
 class PostingsController < ApplicationController
-  before_action :set_posting, only: [:show, :edit, :delete, :update]
+  before_action :set_posting, only: [:show, :edit, :destroy, :update]
   def index
     if supplier_signed_in?
       @postings = Posting.all.where(supplier_id: current_supplier.id)
@@ -35,8 +35,11 @@ class PostingsController < ApplicationController
       render :edit
     end
   end
-  def delete
-    @posting.destroy
+  def destroy
+    @posting.reserve_postings.each do |r|
+      r.delete
+    end
+    @posting.delete
     redirect_to postings_path
   end
   def reserve

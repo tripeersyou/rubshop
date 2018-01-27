@@ -5,7 +5,7 @@
             <% if !@posting.picture.attached?%>
             <%= image_tag("default.png", size: "320x200")%>
             <% else %>
-            <%= image_tag(@posting.picture, size: "600x500", class: "responsive-img") %>
+        <%= image_tag(@posting.picture, size: "600x500", class: "responsive-img") %>
             <% end%>
         </div>
         <div class="col s8">
@@ -45,23 +45,43 @@
             </div>
         </div>
     </div>
-        <%if supplier_signed_in? && @posting.status==false %>
-            <h4>Companies that want to buy this product</h4>
+        <%if supplier_signed_in? && @posting.status == true %>
+            <h4>Companies that want to acquire this</h4>
             <% @posting.reserve_postings.each do |p|%>
             <ul class="collection">
                 <li class="collection-item">
                     <div class="row">
                         <div class="col s6">
                             <h4><%= p.seller.name%></h4>
+                            <p><%= p.seller.email %></p>
                         </div>
                         <div class="col s6">
                             <div class="col s8 offset-s5" style="font-size:20px; padding-top: 20px">
-                            <%= link_to 'Accept Reservation',  posting_reserve_posting_approve_path(@posting,p), method: 'put' , class: "btn disabled" %>
+                            <%= link_to 'Accept Reservation',  posting_reserve_posting_approve_path(@posting,p), method: 'put' , class: "btn" %>
                             </div>
                         </div>
                     </div>
                 </li>
             </ul>
+        <% end %>
+    <% elsif supplier_signed_in? && @posting.status == false %>
+        <h4>Companies that want to acquire this</h4>
+            <% @posting.reserve_postings.each do |p|%>
+            <ul class="collection">
+                <li class="collection-item">
+                <div class="row">
+                    <div class="col s6">
+                        <h4><%= p.seller.name%></h4>
+                        <p><%= p.seller.email %></p>
+                    </div>
+                    <div class="col s6">
+                        <div class="col s8 offset-s5" style="font-size:20px; padding-top: 20px">
+                        <%= link_to 'Accept Reservation',  posting_reserve_posting_approve_path(@posting,p), method: 'put' , class: "btn disabled" %>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
         <% end %>
     <% end %>
 </div>

@@ -1,15 +1,11 @@
-
-
-
-<div class="main-container" style="display: flex; width: 100%;">
+<div class="main-container" style="display: flex; width: 100% height: 100vh;">
   
   
-  <div class="left-card" style="width: 50%; background-color: #DF744A;">
+  <div class="left-card" style="width: 50%; background-color: #936060; height:100vh;">
     
-    <div class="left-card-content" >
-      <p style="margin: 25px; color: white;">Trash Cash is Trashie Cashie Ousside</p>
+    <div class="left-card-content" style="display: flex;" >
+        <%= image_tag("logo.png", size: "320x200", style: "top: 50%; left:25%; transform: translate(-50%, -50%); position: fixed;  display:block;") %>
     </div>
-    
   </div>
   
   <div class="right-card" style="width: 50%; display: flex">
@@ -17,7 +13,7 @@
     
     <div class="right-card-content" style="margin: auto">
       
-      <h3 style="margin-bottom: 15px;">Sign up</h3>
+      <h3 style="margin-bottom: 15px;">Sign up as a Supplier</h3>
       
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= f.error_notification %>
@@ -25,7 +21,7 @@
         <div class="form-inputs">
           <%= f.input :email, required: true, autofocus: true %>
           <%= f.input :name, required: true %>
-          <%= f.input :category, collection: ["Junk Shop"," School", "Barangay", "Others"], required: true%>
+          <%= f.input :category, collection: ["Others", "Junk Shop"," School", "Barangay"], include_blank: false%>
           <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
           <%= f.input :password_confirmation, required: true %>
         </div>

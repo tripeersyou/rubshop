@@ -1,35 +1,45 @@
-
 <div class="container">
     <div class="row">
-        <div class="col s8"><h2 class="left-align">Available Products</h2></div>
+        <% total = 0 %>
+        <% @seller.products.each do |prod| %>
+            <% total += prod.quantity %>
+        <% end %>
+        <% if total <= 0 %>
+            <div class="col s8"><h2 class="left-align"> Products are currently out of stock</h2></div>
+        <% else %>
+            <div class="col s8"><h2 class="left-align">Available Products</h2></div>
+        <% end %>
         <% if !@seller.products.empty?%>
-        <div class="col s4"> <p class="center-align" style="padding-top: 5px"><%= link_to 'Order Now',  new_seller_order_path(@seller.id) ,class: 'btn-large' %></p></div>
+            <% if total > 0 %>
+              <div class="col s4"> <p class="center-align" style="padding-top: 5px"><%= link_to 'Order Now',  new_seller_order_path(@seller.id) ,class: 'btn-large' %></p></div>
+            <% end %>
         <% end %>
     </div>
-    <a href="/sellers"><p>Go back to sellers</p></a>
-    <p><% @seller.products.each do |product| %></p>
-    <div class="row">
-        <div class="right-align col s4" style="padding-top:30px;">
-            <% if !product.picture.attached?%>
-            <%= image_tag("default.png", size: "420x300", :class => "responsive-img")%>
-            <% else %>
-            <%= image_tag(product.picture, size: "600x500", :class => "responsive-img") %>
-            <% end%>
-        </div>
-        <div class="col s8" style="padding-left:100px">
-            <div class="row">
-              <div>
-                  <h3 style="margin-bottom: -20px"><b><%= product.name %></b></h3>
-              </div>
+    <a href="/sellers">Go back to sellers</a>
+    <% @seller.products.each do |product| %>
+
+        <div class="row">
+            <div class="right-align col s4" style="padding-top:30px;">
+                <% if !product.picture.attached?%>
+                <%= image_tag("default.png", size: "420x300", :class => "responsive-img")%>
+                <% else %>
+                <%= image_tag(product.picture, size: "600x500", :class => "responsive-img") %>
+                <% end%>
             </div>
-            <div class="row">
-                <p style="font-size: 20px; color:#DF744A;margin-bottom: -25px">Price: P<%= product.price%> </p>
-                 <p style="font-size: 20px;margin-bottom: -3px">Quantity: <%= product.quantity%> units</p>
-                <h4 style="margin-bottom: -1px">Item Description</h4>
-                <span class="flow-text"><%product.description%></span>
+            <div class="col s8" style="padding-left:100px">
+                <div class="row">
+                <div>
+                    <h3 style="margin-bottom: -20px"><b><%= product.name %></b></h3>
+                </div>
+                </div>
+                <div class="row">
+                    <p style="font-size: 20px; color:#DF744A;margin-bottom: -25px">Price: P<%= product.price%> </p>
+                    <p style="font-size: 20px;margin-bottom: -3px">Quantity: <%= product.quantity%> units</p>
+                    <h4 style="margin-bottom: -1px">Item Description</h4>
+                    <span class="flow-text"><%=product.description%></span>
+                </div>
             </div>
         </div>
-    </div>
     <% end %>
 </div>
 

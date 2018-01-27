@@ -7,15 +7,19 @@
         <% else %>
           <% if supplier_signed_in? %>
             <li><%= link_to 'New Posting', new_posting_path %></li>
+            <li><%= link_to 'Edit Account', edit_supplier_registration_path %></li>
             <li><%= link_to 'Sign Out', destroy_supplier_session_path, method: :delete %></li>
           <% elsif buyer_signed_in?%>
             <li><%= link_to 'View Orders', orders_path %></li>
             <li><%= link_to 'View Sellers', sellers_path %></li>
+            <li><%= link_to 'Edit Account', edit_buyer_registration_path %></li>
             <li><%= link_to 'Sign Out', destroy_buyer_session_path, method: :delete %></li>
           <% elsif seller_signed_in? %>
             <li><%= link_to 'View Products', products_path %></li>
             <li><%= link_to 'View Postings', postings_path %></li>
             <li><%= link_to 'New Product', new_product_path %></li>
+            <li><%= link_to 'View Orders', orders_path %></li>
+            <li><%= link_to 'Edit Account', edit_seller_registration_path %></li>
             <li><%= link_to 'Sign Out', destroy_seller_session_path, method: :delete %></li>
           <% end %>
         <% end %>

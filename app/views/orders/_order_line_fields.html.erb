@@ -2,7 +2,7 @@
 <div class="nested-fields">
     <div class="row">
         <div class="col s3">
-            <%= f.association :product, :collection => @seller.products, :class => 'ajax_field browser-default'%>
+            <%= f.association :product, :collection => @seller.products.where('quantity > ?', 0), include_blank: false, :class => 'ajax_field browser-default'%>
         </div>
         <div class="col s3">
              <%= f.input :quantity %>

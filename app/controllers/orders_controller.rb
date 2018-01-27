@@ -11,6 +11,7 @@ class OrdersController < ApplicationController
     end
     def create
         @order = current_buyer.orders.new(order_params)
+        @order.seller_id = @seller.id
         @order.order_lines.each do |ol|
             product = ol.product
             product.quantity -= ol.quantity

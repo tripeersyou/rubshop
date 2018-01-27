@@ -1,0 +1,24 @@
+<div class="container">
+    <% if @orders.empty? %>
+      <h1>No Orders Yet!</h1>
+      <%= link_to "View companies", sellers_path, class: 'btn btn-large' %>
+    <% else %>
+        <h3>Orders</h3>
+        <div class="row">
+            <% @orders.each do |order| %>        
+                <div class="col s4">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title"><%= order.seller.name %></span>
+                            <p>Total Items: <%= order.total_quantity %></p>
+                            <p>Total Price: P <%= order.total_price %></p>
+                        </div>
+                        <div class="card-action">
+                            <%= link_to 'View Order', order_path(order) %>
+                        </div>
+                    </div>
+                </div>
+            <% end %>               
+        </div>
+    <% end %>
+</div>

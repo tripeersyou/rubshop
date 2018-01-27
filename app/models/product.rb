@@ -6,4 +6,6 @@ class Product < ApplicationRecord
   validates :price, presence: true
   validates :quantity, presence: true
   validates :description, presence: true
+
+  validates_numericality_of :price, greater_than: 0
 end

@@ -16,6 +16,11 @@
                   <p style = "font-size: 20px">Status: <% if @posting.status==false %>Reserved<% else %>Available<%end %></p>
                 </div>
                 <%if seller_signed_in? %>
+                <% if @posting.reserve_postings.empty? %>
+                <div class="col s7">
+                <p class="center-align"><%= link_to 'Reserve', reserve_postings_path(@posting.id), method: :put ,class: 'btn' %></p>
+                </div>
+                <% end %>
                 <% @posting.reserve_postings.each do |pr|%>
                 <% if pr.seller_id != current_seller.id %>
                 <div class="col s7">

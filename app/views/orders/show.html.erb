@@ -1,0 +1,28 @@
+<div class="container">
+    <h3>Order from <%= Seller.find(@order.seller_id).name %></h3>
+    <hr>
+    <table>
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @order.order_lines.each do |ol| %>
+                <tr>
+                    <td><%= ol.product.name %></td>
+                    <td><%= ol.quantity %> units</td>
+                    <td>P <%= ol.price %></td>
+                </tr>
+            <% end %>
+            <tr>
+                <td></td>
+                <td><b><%= @order.total_quantity %> units</b></td>
+                <td><b>P <%= @order.total_price %></b></td>
+            </tr>
+        </tbody>
+    </table>
+    <%= link_to "Back to orders", orders_path %>
+</div>

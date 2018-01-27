@@ -1,0 +1,17 @@
+<% if @postings.empty? %> <!---May ! dapat-->
+<h1 class="center"> <%= current_supplier.name %>'s Garbage Postings</h1>
+  <div class="row">
+    <div class="col s3">img</div>
+    <div class="col s3">img</div>
+    <div class="col s3">img</div>
+    <div class="col s3">img</div>
+  </div>
+  <div class="row">
+    <div class="col s3">img</div>
+    <div class="col s3">img</div>
+    <div class="col s3">img</div>
+    <div class="col s3">img</div>
+  </div>
+<% else %>
+  <h3>You haven't posted any Garbage Postings yet!</h3>
+<% end %>

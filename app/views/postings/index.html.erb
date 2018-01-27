@@ -1,16 +1,20 @@
-<% if @postings.empty? %> <!---May ! dapat-->
+<% if !@postings.empty? %> <!---May ! dapat-->
 <h1 class="center"> <%= current_supplier.name %>'s Garbage Postings</h1>
-  <div class="row">
-    <div class="col s3">img</div>
-    <div class="col s3">img</div>
-    <div class="col s3">img</div>
-    <div class="col s3">img</div>
-  </div>
-  <div class="row">
-    <div class="col s3">img</div>
-    <div class="col s3">img</div>
-    <div class="col s3">img</div>
-    <div class="col s3">img</div>
+  <div class="container">
+    <div class="row">
+      <% @postings.each do |p| %>
+       <%= puts p.picture.inspect %>
+      <div class="col s3">
+        <% if !p.picture.attached?%>
+        <%= image_tag("default.png", size: "320x200")%>
+        <% else %>
+        <%= image_tag(p.picture, size: "320x200", alt:"sd") unless p.picture.blank?%>
+        <% end%>
+        <h4 class="center-align"><%= p.item_type %></h4>
+      </div>
+      
+      <% end %>
+    </div>
   </div>
 <% else %>
   <h3>You haven't posted any Garbage Postings yet!</h3>

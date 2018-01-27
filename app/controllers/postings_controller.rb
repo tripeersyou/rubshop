@@ -21,7 +21,11 @@ class PostingsController < ApplicationController
     
   end
   def update
+    picture = params[:post][:avatar]
     if @posting.update(posting_params)
+      if picture
+        @posting.picture.attach(picture)
+      end
       redirect_to @posting
     else
       render :edit

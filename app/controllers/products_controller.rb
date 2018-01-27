@@ -18,10 +18,14 @@ class ProductsController < ApplicationController
     
   end
   def edit
-    
+
   end
   def update
+    picture = params[:post][:avatar]
     if @product.update(product_params)
+      if picture
+        @product.picture.attach(picture)
+      end
       redirect_to @product
     else
       render :edit
@@ -35,7 +39,7 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit!
     end
-    def set_posting
-      @product = Posting.find(params[:id])
+    def set_product
+      @product = Product.find(params[:id])
     end
 end

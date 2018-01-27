@@ -22,7 +22,10 @@ Rails.application.routes.draw do
   devise_for :buyers
   devise_scope :buyer do
     authenticated :buyer do
-
+      root 'sellers#index', as: :buyer_root
+      resources :sellers, only: [:show, :index] do
+        resources :orders
+      end
     end
   end
   

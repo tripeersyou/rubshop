@@ -15,3 +15,8 @@ if Seller.all.empty?
   puts "Created default seller"
   Seller.create({name:'Seller', email: 'seller@example.com', password: 'password', password_confirmation: 'password'})
 end
+
+if Buyer.all.empty?
+  puts "Created default buyer"
+  Buyer.create({name:'Buyer', email: 'buyer@example.com', password: 'password', password_confirmation: 'password'})
+end

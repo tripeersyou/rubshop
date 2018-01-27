@@ -71,10 +71,9 @@ ActiveRecord::Schema.define(version: 2018_01_27_050022) do
   end
 
   create_table "postings", force: :cascade do |t|
-    t.string "title"
-    t.string "type"
+    t.string "item_type"
     t.integer "supplier_id"
-    t.integer "reserve_count"
+    t.integer "reserve_count", default: 0
     t.decimal "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

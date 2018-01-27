@@ -1,15 +1,39 @@
-<h2>Log in</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email, required: false, autofocus: true %>
-    <%= f.input :password, required: false %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+<div class="main-container" style="display: flex; width: 100%;">
+  
+  
+  <div class="left-card" style="width: 50%; background-color: #DF744A;">
+    
+    <div class="left-card-content" >
+      <p style="margin: 25px; color: white;">Trash Cash is Trashie Cashie Ousside</p>
+    </div>
+    
+  </div>
+  
+  <div class="right-card" style="width: 50%; display: flex">
+      
+    
+    <div class="right-card-content" style="margin: auto">
+      
+        <h3 style="margin-bottom: 15px;">Logo/Name</h3>
+        
+        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="form-inputs">
+            <%= f.input :email, required: false, autofocus: true %>
+            <%= f.input :password, required: false %>
+            <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+          </div>
+        
+          <div class="form-actions">
+            <%= f.button :submit, "Sign In" %>
+          </div>
+        <% end %>
+        
+        <%= render "suppliers/shared/links" %>
+        
+    </div>
+     
+    
+    
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
-
-<%= render "suppliers/shared/links" %>
+</div>

@@ -10,3 +10,8 @@ if Supplier.all.empty?
   Supplier.create({name: 'Supplier', email: 'supplier@example.com', password: 'password', password_confirmation: 'password', category: 'School'})
   puts "Created default supplier"
 end
+
+if Seller.all.empty?
+  puts "Created default seller"
+  Seller.create({name:'Seller', email: 'seller@example.com', password: 'password', password_confirmation: 'password'})
+end

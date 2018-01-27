@@ -1,4 +1,5 @@
 class PostingsController < ApplicationController
+  before_action :set_posting, only: [:show, :edit, :delete]
   def index
     @postings = Posting.all.where(supplier_id: current_supplier.id)
   end
@@ -6,7 +7,7 @@ class PostingsController < ApplicationController
     @posting = current_supplier.postings.new
   end
   def create
-    @posting = current_supplier.posting.new(posting_params)
+    @posting = current_supplier.postings.new(posting_params)
     if @posting.save
       redirect_to @posting
     else
@@ -14,10 +15,10 @@ class PostingsController < ApplicationController
     end
   end
   def show
-
+    
   end
   def edit
-
+    
   end
   def update
     if @posting.update(posting_params)
@@ -27,7 +28,8 @@ class PostingsController < ApplicationController
     end
   end
   def delete
-
+    @posting.destroy
+    redirect_to postings_path
   end
   private
     def posting_params

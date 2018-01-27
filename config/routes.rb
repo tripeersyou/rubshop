@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
-  root 'postings#index'
   # Communities
   devise_for :suppliers
   devise_scope :supplier do
     authenticated :supplier do
+      root 'postings#index', as: :supplier_root
       resources :postings
     end
   end
@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   devise_for :sellers
   devise_scope :seller do
     authenticated :seller do
-
+        root 'products#index', as: :seller_root
+        resources :products
     end
   end
 
@@ -24,5 +25,7 @@ Rails.application.routes.draw do
 
     end
   end
+  
+  root 'pages#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

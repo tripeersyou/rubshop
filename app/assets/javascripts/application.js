@@ -15,4 +15,9 @@
 //= require_tree .
 //= require jquery
 //= require cocoon
-//= require materialize-sprockets
+//= require materialize
+$(document).ready(function() {
+    $('form').on('cocoon:after-insert', function(){
+     $('select').material_select();
+    });
+});

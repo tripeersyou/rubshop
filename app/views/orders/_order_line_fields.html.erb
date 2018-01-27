@@ -1,0 +1,5 @@
+<div class="nested-fields">
+    <%= f.association :product, :collection => @seller.products, :class => 'ajax_field browser-default'%>
+    <%= f.input :quantity %>
+    <%= link_to_remove_association "Remove Product", f,:class => 'btn red'%>
+</div>

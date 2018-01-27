@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :delete]
   def index
-    @product = Product.all.where(seller_id: current_seller.id)
+    @products = Product.all.where(seller_id: current_seller.id)
   end
   def new
     @product = current_seller.products.new

@@ -1,7 +1,9 @@
+<div class="container">
 <%= simple_form_for @product do |f| %>
     <%= f.input :name %>
     <%= f.input :price %>
     <%= f.input :quantity %>
-    <%= f.input :picture %>
+    <%= f.file_field :picture %> <br> <br> <br>
     <%= f.button :submit %>
 <% end %>
+</div>

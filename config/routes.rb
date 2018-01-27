@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   devise_scope :supplier do
     authenticated :supplier do
       root 'postings#index', as: :supplier_root
-      resources :postings
+      resources :postings do
+        resources :reserve_postings, only [] do
+          resources 'approve', to: 'reserve_postings#approve'
+        end
+      end
     end
   end
 
@@ -15,6 +19,11 @@ Rails.application.routes.draw do
     authenticated :seller do
         root 'products#index', as: :seller_root
         resources :products
+        resources :postings, only: [:index, :show] do
+          collection do
+            post 'reserve', to: 'postings#reserve'
+          end
+        end
     end
   end
 
@@ -22,9 +31,10 @@ Rails.application.routes.draw do
   devise_for :buyers
   devise_scope :buyer do
     authenticated :buyer do
+      resources :orders, only: [:index, :show]
       root 'sellers#index', as: :buyer_root
       resources :sellers, only: [:show, :index] do
-        resources :orders
+        resources :orders, only: [:new , :create]
       end
     end
   end

@@ -1,6 +1,7 @@
+
 <%= simple_form_for @posting do |f| %>
     <%= f.input :item_type %>
-    <%= f.file_field :picture %>
     <%= f.input :amount, label: 'Amount in kg' %>
+    <%= f.file_field :picture %>
     <%= f.button :submit %>
 <% end %>

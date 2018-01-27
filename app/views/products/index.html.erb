@@ -1,12 +1,11 @@
-<% if @products.empty? %> <!---May ! dapat-->
+<%= console %>
+<% if !@products.empty? %>
 <h1 class="center"> Products For Sale </h1>
   <div class="container">
     <div class="row">
       <% @products.each do |p| %>
-        <%= puts p.picture.inspect %>
-   <div class="col s3">
+       <div class="col s3">
         <% if !p.picture.attached?%>
-        <% if p.picture == nil %>
         <%= image_tag(default.png, size: "320x200")%>
         <% else %>
         <%= image_tag(p.picture, size: "320x200")%>
@@ -14,14 +13,12 @@
         <h4 class="center-align"><%= p.price %></h4>
         <h4 class="center-align"><%= p.quantity %></h4>
         <% end %>
-    
-    
-    </div>
-      
+      </div>
       <% end %>
     </div>
-    
-   
+  </div> 
 <% else %>
   <h3>No Products Yet!</h3>
 <% end %>
+
+

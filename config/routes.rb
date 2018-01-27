@@ -6,8 +6,8 @@ Rails.application.routes.draw do
     authenticated :supplier do
       root 'postings#index', as: :supplier_root
       resources :postings do
-        resources :reserve_postings, only [] do
-          resources 'approve', to: 'reserve_postings#approve'
+        resources :reserve_postings, only: [] do
+          put 'approve', to: 'reserve_postings#approve'
         end
       end
     end
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
         resources :products
         resources :postings, only: [:index, :show] do
           collection do
-            post 'reserve', to: 'postings#reserve'
+            put ':id/reserve', to: 'postings#reserve', as: 'reserve'
           end
         end
     end

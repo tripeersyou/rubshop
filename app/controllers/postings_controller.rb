@@ -1,7 +1,11 @@
 class PostingsController < ApplicationController
   before_action :set_posting, only: [:show, :edit, :delete]
   def index
-    @postings = Posting.all.where(supplier_id: current_supplier.id)
+    if supplier_signed_in?
+      @postings = Posting.all.where(supplier_id: current_supplier.id)
+    else
+      @postings = Posting.all
+    end
   end
   def new
     @posting = current_supplier.postings.new
@@ -33,6 +37,12 @@ class PostingsController < ApplicationController
   end
   def delete
     @posting.destroy
+    redirect_to postings_path
+  end
+  def reserve
+    @posting = Posting.find(params[:id])
+    @posting.reserve_count += 1
+    @reserve_posting = ReservePosting.create({posting: @posting, seller: current_seller})
     redirect_to postings_path
   end
   private

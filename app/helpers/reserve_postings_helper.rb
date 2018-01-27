@@ -1,0 +1,2 @@
+module ReservePostingsHelper
+end

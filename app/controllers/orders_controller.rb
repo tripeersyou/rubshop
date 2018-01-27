@@ -11,6 +11,11 @@ class OrdersController < ApplicationController
     end
     def create
         @order = current_buyer.orders.new(order_params)
+        @order.order_lines.each do |ol|
+            product = ol.product
+            product.quantity -= ol.quantity
+            product.save
+        end
         if @order.save
             redirect_to @order
         else

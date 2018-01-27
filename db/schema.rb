@@ -63,11 +63,13 @@ ActiveRecord::Schema.define(version: 2018_01_27_050022) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "buyer_id"
+    t.integer "seller_id"
     t.integer "total_quantity"
     t.decimal "total_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["buyer_id"], name: "index_orders_on_buyer_id"
+    t.index ["seller_id"], name: "index_orders_on_seller_id"
   end
 
   create_table "postings", force: :cascade do |t|
@@ -75,6 +77,7 @@ ActiveRecord::Schema.define(version: 2018_01_27_050022) do
     t.integer "supplier_id"
     t.integer "reserve_count", default: 0
     t.decimal "amount"
+    t.boolean "status", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["supplier_id"], name: "index_postings_on_supplier_id"

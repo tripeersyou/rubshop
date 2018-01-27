@@ -1,5 +1,8 @@
 <% if !@postings.empty? %> <!---May ! dapat-->
+<% if supplier_signed_in? %>  
 <h1 class="center"> <%= current_supplier.name %>'s Garbage Postings</h1>
+<% end %>
+
   <div class="container">
     <div class="row">
       <% @postings.each do |p| %>
@@ -11,11 +14,16 @@
         <%= image_tag(p.picture, size: "320x200", alt:"sd") unless p.picture.blank?%>
         <% end%>
         <h4 class="center-align"><%= p.item_type %></h4>
+        <%= link_to 'Reserve', reserve_postings_path, class: 'btn' %>
       </div>
       
       <% end %>
     </div>
   </div>
 <% else %>
+<% if supplier_signed_in? %> 
   <h3>You haven't posted any Garbage Postings yet!</h3>
+<% else %>
+   <h3>No postings yet</h3>
+<%end%>
 <% end %>

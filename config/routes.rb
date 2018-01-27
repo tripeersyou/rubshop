@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   devise_for :sellers
   devise_scope :seller do
     authenticated :seller do
-        root 'products#index', as: :seller_root
+        root 'postings#index', as: :seller_root
         resources :products
         resources :reserve_postings, only: [:index, :destroy], as: :reservations
         resources :postings, only: [:index, :show] do

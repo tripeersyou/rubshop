@@ -1,23 +1,38 @@
 <div class="container">
     <div class="row">
-        <div class="col s6">
+        <div class="col s4">
+            <a href="/postings"><p>Go back to Postings</p></a>
             <% if !@posting.picture.attached?%>
             <%= image_tag("default.png", size: "320x200")%>
             <% else %>
             <%= image_tag(@posting.picture, size: "600x500", alt:"Ex B") %>
             <% end%>
         </div>
-        <div class="col s6">
+        <div class="col s8">
             <div class="row">
-              <div >
-                  <h3><b><%= @posting.item_type %></b></h3>
-                  <a>Amount: <%= @posting.amount%> kg</a>
-              </div>
+                <div class="col s5">
+                  <h3 style=""><b><%= @posting.item_type %></b></h3>
+                  <p style="font-size: 20px;">Amount: <%= @posting.amount%>x</p>
+                  <p style = "font-size: 20px">Status: <%= @posting.status%><%= if @posting.status==true then puts "Reserved" else puts "Available" end%></p>
+                </div>
+                <%if seller_signed_in? %>
+                <div class="col s7">
+                <p class="center-align"><%= link_to 'Reserve', reserve_postings_path(@posting.id), method: :put ,class: 'btn' %></p>
+                </div>
+                <%end%>
             </div>
             <div class="row">
                 <h4>Item Description</h4>
                 <span class="flow-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia rem quaerat ex veritatis labore fugit nemo distinctio, porro ut aperiam doloremque, deserunt sequi repudiandae quas reprehenderit soluta sed suscipit optio.</span>
+                
             </div>
         </div>
     </div>
+        <%if supplier_signed_in? %>
+            <h3>Companies that want to buy this product</h3>
+            <% @posting.reserve_postings.each do |p|%>
+            <h4><%= p.seller.name %></h4>
+            <p><%= link_to 'Accept Reservation', posting_reserve_posting_approve_path(@posting,p), method: 'put' %></p>
+        <% end %>
+    <% end %>
 </div>

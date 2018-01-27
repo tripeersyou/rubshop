@@ -1,24 +1,30 @@
-<%= console %>
-<% if !@products.empty? %>
-<h1 class="center"> Products For Sale </h1>
+<% if !@products.empty? %> <!---May ! dapat-->
+  <% if seller_signed_in? %>  
+  <h1 class="center"> Products For Sale</h1>
+  <% end %>
+
   <div class="container">
     <div class="row">
       <% @products.each do |p| %>
-       <div class="col s3">
+       <%= puts p.picture.inspect %>
+      <div class="col s3">
         <% if !p.picture.attached?%>
-        <%= image_tag(default.png, size: "320x200")%>
+        <%= image_tag("default.png", size: "320x200", :class => "responsive-img")%>   
         <% else %>
-        <%= image_tag(p.picture, size: "320x200")%>
-        <h4 class="center-align"><%= p.name %></h4>
-        <h4 class="center-align"><%= p.price %></h4>
-        <h4 class="center-align"><%= p.quantity %></h4>
-        <% end %>
+        <%= image_tag(p.picture, size: "320x200", :class => "responsive-img") unless p.picture.blank? %>
+        <% end%>
+        <h4 class="center-align" style="font-weight: bold"><%= p.name %></h4>
+        <h5 class="center-align">Price: P<%= p.price %></h5>
+        <h5 class="center-align">Quantity: <%= p.quantity %>x</h5>
       </div>
+      
       <% end %>
     </div>
-  </div> 
+  </div>
 <% else %>
-  <h3>No Products Yet!</h3>
+<% if seller_signed_in? %> 
+  <h3 class="center-align">You haven't posted any product yet!</h3>
+<% else %>
+   <h3 class="center-align">No products yet</h3>
+<%end%>
 <% end %>
-
-

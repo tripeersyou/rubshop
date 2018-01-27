@@ -1,3 +1,16 @@
-<% @sellers.each do |seller| %>
-     <p><%= seller.name %></p>
-<% end %>
+<div class="container">
+    <% @sellers.each do |seller| %>
+    <h1 class="center-align">List of Available Companies</h1>
+    <ul class="collection">
+        <li class="collection-item avatar">
+          <i class="medium material-icons circle">account_circle</i>
+          <span class="title" style="font-size: 30px; font-weight: bold;"><%= seller.name %></span>
+          <p style="font-size: 16px; padding: 5px;"> <%=seller.email %> <br>
+             <%= link_to "View Products", seller_path(seller)%>
+          </p>
+          <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+        </li>
+    </ul>
+    
+    <% end %>
+</div>

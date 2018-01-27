@@ -16,9 +16,3 @@
 //= require jquery
 //= require cocoon
 //= require materialize
-$(document).ready(function() {
-    $('select').material_select();
-    $('form').on('cocoon:after-insert', function(){
-     $('select').material_select();
-    });
-});

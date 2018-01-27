@@ -8,7 +8,9 @@
   </head>
 
   <body>
+    <% if supplier_signed_in? || buyer_signed_in? || seller_signed_in? %>
     <%= render 'layouts/navigation' %>
+    <% end %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
       <%= yield %>   

@@ -1,7 +1,7 @@
 <% if !@postings.empty? %> <!---May ! dapat-->
-<% if supplier_signed_in? %>  
-<h1 class="center"> <%= current_supplier.name %>'s Garbage Postings</h1>
-<% end %>
+  <% if supplier_signed_in? %>  
+  <h1 class="center"> <%= current_supplier.name %>'s Resource Postings</h1>
+  <% end %>
 
   <div class="container">
     <div class="row">
@@ -9,12 +9,12 @@
        <%= puts p.picture.inspect %>
       <div class="col s3">
         <% if !p.picture.attached?%>
-        <%= image_tag("default.png", size: "320x200")%>
+        <%= image_tag("default.png", size: "320x200", :class => "responsive-img")%>
         <% else %>
-        <%= image_tag(p.picture, size: "320x200", alt:"sd") unless p.picture.blank?%>
+        <%= image_tag(p.picture, size: "320x200", alt:"sd", :class => "responsive-img") unless p.picture.blank?%>
         <% end%>
         <h4 class="center-align"><%= p.item_type %></h4>
-        <%= link_to 'Reserve', reserve_postings_path, class: 'btn' %>
+        <p class="center-align"><%= link_to 'View Posting', posting_path(p), class: 'btn' %></p>
       </div>
       
       <% end %>
@@ -22,8 +22,8 @@
   </div>
 <% else %>
 <% if supplier_signed_in? %> 
-  <h3>You haven't posted any Garbage Postings yet!</h3>
+  <h3 class="center-align">You haven't posted any Garbage Postings yet!</h3>
 <% else %>
-   <h3>No postings yet</h3>
+   <h3 class="center-align">No postings yet</h3>
 <%end%>
 <% end %>

@@ -1,3 +1,33 @@
-<% @seller.products.each do |product| %>
-    <%= product.name %>
-<% end %>
+
+<div class="container">
+    <h2 class="center-align">Available Products</h2>
+    <div class="row">
+        <div class="col 2 offset-s9"> <p class="center-align"><%= link_to 'Order Now',  new_seller_order_path(@seller.id), method: :put ,class: 'btn' %></p></div>
+    </div>
+    <% @seller.products.each do |product| %>
+    <div class="row">
+        <div class="right-align col s4" style="padding-top:30px;">
+            <% if !product.picture.attached?%>
+            <%= image_tag("default.png", size: "420x300")%>
+            <% else %>
+            <%= image_tag(product.picture, size: "600x500", alt:"Ex B") %>
+            <% end%>
+        </div>
+        <div class="col s8" style="padding-left:100px">
+            <div class="row">
+              <div>
+                  <h3 style="margin-bottom: -20px"><b><%= product.name %></b></h3>
+              </div>
+            </div>
+            <div class="row">
+                <p style="font-size: 20px; color:#DF744A;margin-bottom: -25px">Price: Php <%= product.price%> </p>
+                 <p style="font-size: 20px;margin-bottom: -3px">Quantity: <%= product.quantity%>x</p>
+                <h4 style="margin-bottom: -1px">Item Description</h4>
+                <span class="flow-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia rem quaerat ex veritatis labore fugit nemo distinctio, porro ut aperiam doloremque, deserunt sequi repudiandae quas reprehenderit soluta sed suscipit optio.</span>
+            </div>
+        </div>
+    </div>
+    <% end %>
+</div>
+
+                 

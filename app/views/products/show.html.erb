@@ -1,1 +1,25 @@
-<h1><%= @product.name %></h1>
+<div class="container">
+    <div class="row">
+        <div class="col s6">
+            <a href="/products"><p>Go back to products</p></a>
+            <% if !@product.picture.attached?%>
+            <%= image_tag("default.png", size: "320x200")%>
+            <% else %>
+            <%= image_tag(@product.picture, size: "600x500", alt:"Ex B") %>
+            <% end%>
+        </div>
+        <div class="col s6">
+            <div class="row">
+              <div>
+                  <h3 style=""><b><%= @product.name %></b></h3>
+                  <p style="font-size: 20px; color:#DF744A;">Price: <%= @product.price%> kg</p>
+                  <p style="font-size: 20px;">Quantity:<%= @product.quantity%>x</p>
+              </div>
+            </div>
+            <div class="row">
+                <h4>Item Description</h4>
+                <span class="flow-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia rem quaerat ex veritatis labore fugit nemo distinctio, porro ut aperiam doloremque, deserunt sequi repudiandae quas reprehenderit soluta sed suscipit optio.</span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,12 +1,10 @@
 <div class="main-container" style="display: flex; width: 100%; height: 100vh;">
   
   
-  <div class="left-card" style="width: 50%; background-color: #DF744A;">
+  <div class="left-card" style="width: 50%; background-color: #936060">
     
     <div class="left-card-content" style="display: flex;" >
-      <div class="" style="width: 200px; height: 200px; border-radius: 50%; background-color: orange; margin: 20% auto; text-align: center; line-height: 200px;">
-        <p class="white-text">Trashy Cashy Oushy</p>
-      </div>
+        <%= image_tag("logo.png", size: "320x200", style: "top: 50%; left:25%; transform: translate(-50%, -50%); position: fixed;  display:block;") %>
     </div>
   </div>
   
@@ -15,7 +13,7 @@
     
     <div class="right-card-content" style="margin: auto">
       
-        <h3 style="margin-bottom: 15px;">Logo/Name</h3>
+        <h3 style="margin-bottom: 15px;">Seller Login</h3>
         
         <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="form-inputs">

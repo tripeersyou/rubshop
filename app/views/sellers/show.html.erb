@@ -1,16 +1,19 @@
 
 <div class="container">
-    <h2 class="center-align">Available Products</h2>
     <div class="row">
-        <div class="col 2 offset-s9"> <p class="center-align"><%= link_to 'Order Now',  new_seller_order_path(@seller.id), method: :put ,class: 'btn' %></p></div>
+        <div class="col s8"><h2 class="left-align">Available Products</h2></div>
+        <% if !@seller.products.empty?%>
+        <div class="col s4"> <p class="center-align" style="padding-top: 5px"><%= link_to 'Order Now',  new_seller_order_path(@seller.id) ,class: 'btn-large' %></p></div>
+        <% end %>
     </div>
-    <% @seller.products.each do |product| %>
+    <a href="/sellers"><p>Go back to sellers</p></a>
+    <p><% @seller.products.each do |product| %></p>
     <div class="row">
         <div class="right-align col s4" style="padding-top:30px;">
             <% if !product.picture.attached?%>
-            <%= image_tag("default.png", size: "420x300")%>
+            <%= image_tag("default.png", size: "420x300", :class => "responsive-img")%>
             <% else %>
-            <%= image_tag(product.picture, size: "600x500", alt:"Ex B") %>
+            <%= image_tag(product.picture, size: "600x500", :class => "responsive-img") %>
             <% end%>
         </div>
         <div class="col s8" style="padding-left:100px">

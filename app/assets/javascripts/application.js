@@ -14,7 +14,7 @@
 //= require activestorage
 //= require jquery
 //= require cocoon
-//= require materialize
+//= require materialize-sprockets
 //= require_tree .
 $(document).ready(function() {
     var field_number = 1;

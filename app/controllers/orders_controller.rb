@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-    before_action :set_seller, except: [:index, :order]
+    before_action :set_seller, except: [:index, :order, :show]
     def index
         @orders = Order.all.where(buyer_id: current_buyer.id)
     end
@@ -14,7 +14,11 @@ class OrdersController < ApplicationController
         @order.order_lines.each do |ol|
             product = ol.product
             product.quantity -= ol.quantity
-            product.save
+            if product.quantity <= 0
+                product.delete
+            else
+                product.save
+            end
         end
         if @order.save
             redirect_to @order

@@ -11,7 +11,7 @@ class ReservePostingsController < ApplicationController
         @posting.reserve_postings.each do |rp|
             rp.delete unless rp == @reservations
         end
-        @posting.status == false
+        @posting.status = false
         @posting.save
         redirect_to @posting
     end

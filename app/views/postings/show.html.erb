@@ -5,15 +5,15 @@
             <% if !@posting.picture.attached?%>
             <%= image_tag("default.png", size: "320x200")%>
             <% else %>
-            <%= image_tag(@posting.picture, size: "600x500", alt:"Ex B") %>
+            <%= image_tag(@posting.picture, size: "600x500", class: "responsive-img") %>
             <% end%>
         </div>
         <div class="col s8">
             <div class="row">
                 <div class="col s5">
                   <h3 style=""><b><%= @posting.item_type %></b></h3>
-                  <p style="font-size: 20px;">Amount: <%= @posting.amount%>x</p>
-                  <p style = "font-size: 20px">Status: <%= @posting.status%><%= if @posting.status==true then puts "Reserved" else puts "Available" end%></p>
+                  <p style="font-size: 20px;">Amount: <%= @posting.amount%> kg</p>
+                  <p style = "font-size: 20px">Status: <% if @posting.status==false %>Reserved<% else %>Available<%end %></p>
                 </div>
                 <%if seller_signed_in? %>
                 <div class="col s7">
@@ -28,9 +28,12 @@
             </div>
         </div>
     </div>
-        <%if supplier_signed_in? %>
-            <h3>Companies that want to buy this product</h3>
+        <%if supplier_signed_in? || @posting.status==false %>
+            <h4>Companies that want to buy this product</h4>
             <% @posting.reserve_postings.each do |p|%>
+            <ul class="collection">
+                <li class="collection-item"><div><%= p.seller.name %><a style="align: right"><%= link_to 'Accept Reservation', posting_reserve_posting_approve_path(@posting,p), method: 'put' %></a></div></li>
+              </ul>
             <h4><%= p.seller.name %></h4>
             <p><%= link_to 'Accept Reservation', posting_reserve_posting_approve_path(@posting,p), method: 'put' %></p>
         <% end %>

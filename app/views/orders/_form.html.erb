@@ -1,11 +1,14 @@
-<%= simple_form_for [@seller, @order] do |f| %>
+<div class="container">
+    <%= simple_form_for [@seller, @order] do |f| %>
     <%= f.simple_fields_for :order_lines do |d| %>
         <% render 'order_line_fields', f: d%>
     <% end %>
     <div class="links">
         <%= link_to_add_association 'Add Product', f, :order_lines, :class => 'btn', :id => 'add' %>
     </div>
+    <hr>
     <%= f.input :total_quantity, readonly: true %>
     <%= f.input :total_price, readonly: true %>
     <%= f.button :submit %>
 <% end %>
+</div>

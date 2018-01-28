@@ -41,9 +41,6 @@
                         </div>
                         <div class="card-action">
                             <%= link_to 'View Order', order_path(order) %>
-                            <% if order.status == false %>
-                                <%= link_to 'Approve Order', approve_orders_path(order), method: :put %>  
-                            <% end %>
                         </div>
                     </div>
                 </div>

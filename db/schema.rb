@@ -67,7 +67,6 @@ ActiveRecord::Schema.define(version: 2018_01_27_050022) do
     t.integer "seller_id"
     t.integer "total_quantity"
     t.decimal "total_price"
-    t.boolean "status", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["buyer_id"], name: "index_orders_on_buyer_id"

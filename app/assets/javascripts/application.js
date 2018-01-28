@@ -95,7 +95,7 @@ $(document).ready(function() {
             }
             iterator++;
             if (iterator == 3) {
-                iterator = 0;
+                iterator = 1;
             }
         }
         total_items.val(quantityTotal);

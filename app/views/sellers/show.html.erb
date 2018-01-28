@@ -2,7 +2,7 @@
     <div class="row">
         <% total = 0 %>
         <% @seller.products.each do |prod| %>
-            <% total += prod.quantity %>
+            <% total += prod.quantity if prod.quantity != nil %>
         <% end %>
         <% if total <= 0 %>
             <div class="col s8"><h2 class="left-align"> Products are currently out of stock</h2></div>

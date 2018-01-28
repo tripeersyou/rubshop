@@ -3,9 +3,9 @@
         <div class="col s6">
             <a href="/products"><p>Go back to products</p></a>
             <% if !@product.picture.attached?%>
-            <%= image_tag("default.png", size: "320x200")%>
+            <%= image_tag("default.png", size: "320x200", class: 'responsive-img')%>
             <% else %>
-            <%= image_tag(@product.picture, size: "600x500", alt:"Ex B") %>
+            <%= image_tag(@product.picture, size: "600x500", alt:"Ex B", class: 'responsive-img') %>
             <% end%>
         </div>
         <div class="col s6">

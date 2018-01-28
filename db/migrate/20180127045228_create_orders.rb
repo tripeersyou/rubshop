@@ -5,7 +5,6 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.references :seller, foreign_key: true
       t.integer :total_quantity
       t.decimal :total_price
-      t.boolean :status, default: false
 
       t.timestamps
     end

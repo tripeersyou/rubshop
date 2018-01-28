@@ -1,9 +1,8 @@
 <div class="container">
-    <h3>Order from <%= Seller.find(@order.seller_id).name %></h3>
-    <% if @order.status %>
-        <small>Status: Fulfilled</small>      
+    <% if buyer_signed_in? %>
+        <h3>Order from <%= Seller.find(@order.seller_id).name %></h3>          
     <% else %>
-        <small>Status: Unfulfilled</small>      
+        <h3><%=@order.buyer.name %>'s purchases</h3>
     <% end %>
     <hr>
     <table>
